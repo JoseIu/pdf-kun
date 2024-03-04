@@ -41,12 +41,11 @@ export const createThread = async (req: Request, res: Response) => {
   const updatedAssistant = await OPENAI.beta.assistants.update(assistantId!, updatedData);
 
   console.log(updatedAssistant);
-  // const { id } = await OPENAI.beta.threads.create();
+  const { id } = await OPENAI.beta.threads.create();
 
-  // if (!id) return res.status(400).json({ message: 'Error creating assitantID (TreadId) 😢' });
+  if (!id) return res.status(400).json({ message: 'Error creating assitantID (TreadId) 😢' });
 
-  // res.status(200).json({ message: 'Thread ID created successfully! 😁', id });
-  res.status(200).json({ message: 'Thread ID created successfully! 😁', updatedAssistant });
+  res.status(200).json({ message: 'Thread ID created successfully! 😁', fileId, threadId: id });
 };
 
 export const createMessage = async (req: Request, res: Response) => {
